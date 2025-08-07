@@ -20,12 +20,35 @@ namespace Todo
         {
             IconProvider.Current
                 .Register<FontAwesomeIconProvider>();
-
-            return AppBuilder.Configure<App>()
+            var builder = AppBuilder.Configure<App>();
+            builder = builder
                 .UsePlatformDetect()
                 .LogToTrace()
                 // .WithIcons(container => container.Register<FontAwesomeIconProvider>())
                 .UseReactiveUI();
+            
+            var x11Options = new X11PlatformOptions
+            {
+                RenderingMode = [X11RenderingMode.Vulkan, X11RenderingMode.Egl, X11RenderingMode.Glx, X11RenderingMode.Software],
+                UseRetainedFramebuffer = true,
+                OverlayPopups = true
+            };
+
+            if (OperatingSystem.IsFreeBSD())
+            {
+                builder = builder
+                    .UseSkia()
+                    .UseX11()
+                    .With(x11Options);
+            }
+            else
+            {
+                builder = builder
+                    .UsePlatformDetect()
+                    .With(x11Options);
+            }
+
+            return builder;
         }
     }
 }
