@@ -8,7 +8,7 @@ namespace Todo
 {
     public class ViewLocator : IDataTemplate
     {
-        public IControl Build(object data)
+        public Control Build(object data)
         {
             string name;
 

@@ -63,7 +63,7 @@ public class HeaderedScrollViewer : AvaloniaObject
     }
 
     
-    private static void HandleTargetHeaderChanged(IAvaloniaObject element, string value)
+    private static void HandleTargetHeaderChanged(AvaloniaObject element, string value)
     {
         if (element is ScrollViewer scrollViewer)
         {

@@ -28,15 +28,6 @@ public class LostFocusWhenEnterBehavior : Behavior<TextBox>
     {
         if (AssociatedObject != null && e.Key == Key.Enter)
         {
-            var current = FocusManager.Instance?.Current;
-            if (current != null)
-            {
-                var next = KeyboardNavigationHandler.GetNext(current, NavigationDirection.Next);
-                if (next != null)
-                {
-                    FocusManager.Instance?.Focus(next, NavigationMethod.Directional);
-                }
-            }
         }
     }
 }
